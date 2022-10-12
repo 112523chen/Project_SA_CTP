@@ -10,7 +10,7 @@
 
 ## Project Description
 
-Creating a machine learning model that predicts the emotions of a section of text from a labeled dataset.
+Created a machine learning model that predicts the emotions of a section of text from a labeled dataset.
 
 ## Data Source
 
