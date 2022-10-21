@@ -1,16 +1,8 @@
-# CTP-Fall-2022-Project
+# Project SA (Sentiment Analysis)
 
-## Team Name
+## Project Description (To Be Updated)
 
-***VAR***
-
-## Project Name
-
-**Project SA (Sentiment Analysis)** 
-
-## Project Description
-
-Creating a machine learning model that predicts the emotions of a section of text from a labeled dataset.
+Create a machine learning model that predicts the emotions of a section of text from a labeled dataset.
 
 ## Data Source
 
@@ -21,6 +13,20 @@ Creating a machine learning model that predicts the emotions of a section of tex
 [Alternative Dataset](https://www.kaggle.com/datasets/pashupatigupta/emotion-detection-from-text?resource=download)
 
 > Dataset that contains tweets with the id of the tweets, text within the tweets, and labels for the text that describes the emotion of the text
+
+## Technologies
+
+<span style="background:#798897; color:white">To Be Updated<span>
+
+## Contributors
+`Victor Wu`
+**[@WuVi5054](https://github.com/WuVi5054)**
+
+`Alex Chen`
+**[@112523chen](https://github.com/112523chen)**
+
+`Richard Yeung`
+**[@ryrichard](https://github.com/ryrichard)**
 
 ## File Directory
 
