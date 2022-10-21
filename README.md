@@ -24,4 +24,8 @@ Creating a machine learning model that predicts the emotions of a section of tex
 
 ## File Directory
 
-<span style="background:#798897; color:white">To Be Updated<span>
+### app.py
+> Location of the streamlit application
+
+### research.ipynb
+> Location for researching 
