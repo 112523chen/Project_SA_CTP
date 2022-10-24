@@ -2,9 +2,11 @@ import streamlit as st
 import pickle
 import pandas as pd
 import re
+import nltk
 from nltk.corpus import stopwords
 from nltk import word_tokenize
 from nltk.stem import PorterStemmer
+nltk.download('punkt')
 
 #store saved models into variables
 model = pickle.load(open('BOW-MNB.pkl','rb'))
