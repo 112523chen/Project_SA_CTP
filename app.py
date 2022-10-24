@@ -6,7 +6,9 @@ import nltk
 from nltk.corpus import stopwords
 from nltk import word_tokenize
 from nltk.stem import PorterStemmer
+
 nltk.download('punkt')
+nltk.download('stopwords')
 
 #store saved models into variables
 model = pickle.load(open('BOW-MNB.pkl','rb'))
@@ -48,7 +50,14 @@ st.set_page_config( # head tag
 c1, c2, c3 = st.columns([1, 6, 1]) # establish margin
 with c2:
     st.title('Emotion Analysis Model') #header tag
-    text = st.text_input('Text Sample', 'Enter text here...') # message, default
-    if text != 'Enter text here...' or text != None: #check if text var is an actually input 
+    text = st.text_input('Text Sample', '') # message, default
+    if text is not '': #check if text var is an actually input 
         prediction = findEmotion(text) # finds the emotion behind the user input
         st.header(f"The text above has the {prediction} emotion behind it") #presents prediction
+    else:
+        st.info(
+                f"""
+                    ⬆️ Enter text first.
+                    """
+            )
+        st.stop()
