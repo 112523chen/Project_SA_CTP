@@ -45,7 +45,7 @@ st.set_page_config( # head tag
 
 c1, c2, c3 = st.columns([1, 6, 1]) # establish margin
 with c2:
-    st.title('Emotion Analysis') #header tag
+    st.title('Emotion Analysis Model') #header tag
     text = st.text_input('Text Sample', 'Enter text here...') # message, default
     if text != 'Enter text here...' or text != None: #check if text var is an actually input 
         prediction = findEmotion(text) # finds the emotion behind the user input
