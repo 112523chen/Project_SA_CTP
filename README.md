@@ -1,8 +1,8 @@
 # Project SA (Sentiment Analysis)
 
-## Project Description (To Be Updated)
+## Project Description
 
-Create a machine learning model that predicts the emotions of a section of text from a labeled dataset.
+Create a machine learning model that predicts the emotions of a section of text using data from a labeled dataset.
 
 ## Data Source
 
@@ -16,7 +16,7 @@ Create a machine learning model that predicts the emotions of a section of text 
 
 ## Technologies
 
-<span style="background:#798897; color:white">To Be Updated<span>
+[Pandas](https://pandas.pydata.org), [Numpy](https://numpy.org), [Matplotlib](https://matplotlib.org), [Scikit-Learn](https://scikit-learn.org/stable/), [NLTK](https://www.nltk.org)
 
 ## Contributors
 `Victor Wu`
