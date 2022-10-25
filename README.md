@@ -29,16 +29,8 @@ Create a machine learning model that predicts the emotions of a section of text 
 **[@ryrichard](https://github.com/ryrichard)**
 
 ## File Directory
-
-<<<<<<< HEAD
-<span style="background:#798897; color:white">To Be Updated<span>
-=======
 ### app.py
 > Location of the streamlit application
 
 ### research.ipynb
-> Location for researching 
-<<<<<<< HEAD
-=======
->>>>>>> cwd
->>>>>>> 56a91c646f0fac5684fdc5b4eda69713cc294f73
+> Location for research for project
