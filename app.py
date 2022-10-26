@@ -36,7 +36,7 @@ def findEmotion(text): # Find emotion behind text
 #app below
 
 st.set_page_config( # head tag
-    page_title="Image Classification Demo", 
+    page_title="Emotion Prediction Model Demo", 
     page_icon="random",
     menu_items={
         'Get Help': 'https://github.com/112523chen/CTP-Fall-2022-Project',
