@@ -10,12 +10,12 @@ from nltk.stem import PorterStemmer
 nltk.download('punkt')
 nltk.download('stopwords')
 
-#store saved models into variables
-model = pickle.load(open('BOW-MNB.pkl','rb'))
-vectorizer = pickle.load(open('vectorizer-BOW-MNB.pkl','rb'))
+#store saved models into variables - Best model cleaned BOW and MNB
+model = pickle.load(open('references/models/cleaned_BoW-MNB.pkl','rb'))
+vectorizer = pickle.load(open('references/vectorizers/BoW_vectorizer-MNB.pkl','rb'))
 
 #helper functions
-def clean_tweets(tweet): # clean up text
+def clean_tweets_with_stem(tweet): # clean up text
     tweet = tweet.lower()
     tweet = re.sub(r'[^\w\s]', '', tweet)
     words = word_tokenize(tweet)
@@ -25,9 +25,17 @@ def clean_tweets(tweet): # clean up text
     tweet = " ".join([ porter.stem(word) for word in words])
     return tweet
 
+def clean_tweets_without_nlp(tweet):
+    tweet = tweet.lower()
+    tweet = re.sub(r'[^\w\s]', '', tweet)
+    words = word_tokenize(tweet)
+    tweet = " ".join([ word for word in words])
+    return tweet
+
 def findEmotion(text): # Find emotion behind text
     emotions = ['sadness','joy','love','anger','fear','surprise']
-    text = clean_tweets(text)
+    # text = clean_tweets_with_stem(text)
+    text = clean_tweets_without_nlp(text)
     text = vectorizer.transform([text])
     idx = model.predict(text)[0]
     return emotions[idx]
