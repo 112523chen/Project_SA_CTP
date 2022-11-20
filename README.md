@@ -6,13 +6,13 @@ Create a machine learning model that predicts the emotions of a section of text 
 
 ## Data Source
 
-[Main Dataset](https://www.kaggle.com/datasets/parulpandey/emotion-dataset)
+[Original](https://www.kaggle.com/datasets/parulpandey/emotion-dataset)
 
 > Dataset that contains a section of text with labels for the text that describes the emotion of the text
 
-[Alternative Dataset](https://www.kaggle.com/datasets/pashupatigupta/emotion-detection-from-text?resource=download)
+[Second Dataset](https://github.com/dair-ai/emotion_dataset)
 
-> Dataset that contains tweets with the id of the tweets, text within the tweets, and labels for the text that describes the emotion of the text
+> Dataset that contains tweets with a emotion label attached to it
 
 ## Technologies
 
@@ -29,8 +29,14 @@ Create a machine learning model that predicts the emotions of a section of text 
 **[@ryrichard](https://github.com/ryrichard)**
 
 ## File Directory
-### app.py
-> Location of the streamlit application
+### Main_Page.py
+> Location of the root of the streamlit application
 
 ### research.ipynb
 > Location for research for project
+
+### references/models
+> Location of the machine learning models
+
+### references/vectorizers
+> Location of teh vecotorizers for the machine learning model
