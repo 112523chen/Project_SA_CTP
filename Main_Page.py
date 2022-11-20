@@ -4,8 +4,6 @@ import pandas as pd
 import re
 import nltk
 import numpy as np
-from matplotlib import pyplot as plt
-import seaborn as sns
 from nltk.corpus import stopwords
 from nltk import word_tokenize
 from nltk.stem import PorterStemmer
