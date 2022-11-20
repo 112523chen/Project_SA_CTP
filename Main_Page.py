@@ -7,16 +7,18 @@ import numpy as np
 from nltk.corpus import stopwords
 from nltk import word_tokenize
 from nltk.stem import PorterStemmer
-
 nltk.download('punkt')
 nltk.download('stopwords')
+
 
 #store saved models into variables - Best model cleaned BOW and MNB
 model = pickle.load(open('references/models/cleaned_BoW_MNB_88.pkl','rb'))
 vectorizer = pickle.load(open('references/vectorizers/BoW_vectorizer_MNB_88.pkl','rb'))
 
+
 #app variables
 inputTextLimit = 75
+
 
 #helper functions
 def clean_tweets_with_stem(tweet): # clean up text
@@ -41,23 +43,13 @@ def findEmotion(text): # Find emotion behind text
     text = clean_tweets_without_nlp(text)
     text = vectorizer.transform([text])
     prediction= model.predict(text)[0]
-    return prediction
-
-def getEmotionProb(text):
-    emotions = ['sadness','joy','love','anger','fear','surprise']
-    text = clean_tweets_without_nlp(text)
-    text = vectorizer.transform([text])
-    d = {
-        "emotion": emotions,
-        "probability": model.predict_proba(text)[0]
-    }
+    d = { "emotion": emotions, "probability": model.predict_proba(text)[0] }
     df = pd.DataFrame(d)
     df = df.set_index('emotion')
-    return df
+    return prediction, df
 
 
 #app below
-
 st.set_page_config( # head tag
     page_title="Emotion Prediction Model Demo", 
     page_icon="📝",
@@ -70,7 +62,6 @@ st.set_page_config( # head tag
                 """ 
     })
 
-
 agree = st.sidebar.checkbox('See Probability Estimates')
 
 c1, c2, c3 = st.columns([1, 6, 1]) # establish margin
@@ -78,8 +69,8 @@ with c2:
     st.title('Emotion Analysis Model') #header tag
     text = st.text_input('Text Sample', '') # message, default
     if text is not '': #check if text var is an actually input 
-        prediction = findEmotion(text) # finds the emotion behind the user input
-        prediction_df = getEmotionProb(text)
+        prediction = findEmotion(text)[0] # finds the emotion behind the user input
+        prediction_df = findEmotion(text)[1]
         if len(text) > inputTextLimit:
             st.header(f"The text has the {prediction} emotion behind it") #presents prediction
             st.write(text)
