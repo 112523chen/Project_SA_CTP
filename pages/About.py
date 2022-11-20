@@ -16,7 +16,7 @@ with tab1:
 
     accuracy = st.expander("What is the accuracy of our model?")
     accuracy.write("""
-    The current demo's model has an accuracy score of 77%
+    The current demo's model has an accuracy score of 88%
     """)
 
     takeaways = st.expander("What are some key takeaways from this project?")

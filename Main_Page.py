@@ -12,8 +12,8 @@ nltk.download('punkt')
 nltk.download('stopwords')
 
 #store saved models into variables - Best model cleaned BOW and MNB
-model = pickle.load(open('references/models/cleaned_BoW-MNB.pkl','rb'))
-vectorizer = pickle.load(open('references/vectorizers/BoW_vectorizer-MNB.pkl','rb'))
+model = pickle.load(open('references/models/cleaned_BoW_MNB_88.pkl','rb'))
+vectorizer = pickle.load(open('references/vectorizers/BoW_vectorizer_MNB_88.pkl','rb'))
 
 #app variables
 inputTextLimit = 75
@@ -40,8 +40,8 @@ def findEmotion(text): # Find emotion behind text
     emotions = ['sadness','joy','love','anger','fear','surprise']
     text = clean_tweets_without_nlp(text)
     text = vectorizer.transform([text])
-    idx = model.predict(text)[0]
-    return emotions[idx]
+    prediction= model.predict(text)[0]
+    return prediction
 
 def getEmotionProb(text):
     emotions = ['sadness','joy','love','anger','fear','surprise']
