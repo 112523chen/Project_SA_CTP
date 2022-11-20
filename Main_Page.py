@@ -39,7 +39,7 @@ def clean_tweets_without_nlp(tweet):
     return tweet
 
 def findEmotion(text): # Find emotion behind text
-    emotions = ['sadness','joy','love','anger','fear','surprise']
+    emotions = ['anger','fear','joy','love','sadness','surprise']
     text = clean_tweets_without_nlp(text)
     text = vectorizer.transform([text])
     prediction= model.predict(text)[0]
