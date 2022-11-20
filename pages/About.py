@@ -52,5 +52,9 @@ with tab3:
         [Emotion Dataset for Emotion Recognition Tasks](https://www.kaggle.com/datasets/parulpandey/emotion-dataset)
 
         > Dataset that contains a section of text with labels for the text that describes the emotion of the text
+
+        [Second Dataset](https://github.com/dair-ai/emotion_dataset)
+
+        > Dataset that contains tweets with a emotion label attached to it
         """
     )
