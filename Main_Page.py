@@ -7,8 +7,9 @@ import numpy as np
 from nltk.corpus import stopwords
 from nltk import word_tokenize
 from nltk.stem import PorterStemmer
-nltk.download('punkt')
-nltk.download('stopwords')
+from nltk.stem import WordNetLemmatizer
+# nltk.download('punkt')
+# nltk.download('stopwords')
 
 
 #store saved models into variables - Best model cleaned BOW and MNB
@@ -21,6 +22,16 @@ inputTextLimit = 75
 
 
 #helper functions
+def clean_tweets_with_lem(tweet):
+    tweet = tweet.lower()
+    tweet = re.sub(r'[^\w\s]', '', tweet)
+    words = word_tokenize(tweet)
+    tweet = " ".join([word for word in words if word not in stopwords.words('english') ])
+    words = word_tokenize(tweet)
+    lem = WordNetLemmatizer()
+    tweet = " ".join([ lem.lemmatize(word) for word in words])
+    return tweet
+
 def clean_tweets_with_stem(tweet): # clean up text
     tweet = tweet.lower()
     tweet = re.sub(r'[^\w\s]', '', tweet)
@@ -40,8 +51,7 @@ def clean_tweets_without_nlp(tweet):
 
 def findEmotion(text): # Find emotion behind text
     emotions = ['anger','fear','joy','love','sadness','surprise']
-    text = clean_tweets_without_nlp(text)
-    text = vectorizer.transform([text])
+    text = vectorizer.transform([clean_tweets_with_lem(text)])
     prediction= model.predict(text)[0]
     d = { "emotion": emotions, "probability": model.predict_proba(text)[0] }
     df = pd.DataFrame(d)
