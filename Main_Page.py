@@ -55,10 +55,10 @@ def findEmotion(text): # Find emotion behind text
     emotions = ['anger','fear','joy','love','sadness','surprise']
     text = vectorizer.transform([clean_tweets_with_lem(text)])
     prediction= model.predict(text)[0]
-    d = { "emotion": emotions, "probability": model.predict_proba(text)[0] }
-    df = pd.DataFrame(d)
-    df = df.set_index('emotion')
-    return prediction, df
+    prob_df = pd.DataFrame( { "emotion": emotions, "probability": model.predict_proba(text)[0] } )
+    prob_df.set_index('emotion', inplace=True)
+    prob_df.sort_values(['probability'], inplace=True, ascending=False)
+    return prediction, prob_df 
 
 
 #app below
