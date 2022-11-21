@@ -1,3 +1,12 @@
+#import libraries
+import re
+import pandas as pd
+from nltk import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
+
+
 #helper functions
 def clean_tweets_with_lem(tweet):
     tweet = tweet.lower()
@@ -26,7 +35,7 @@ def clean_tweets_without_nlp(tweet):
     tweet = " ".join([ word for word in words])
     return tweet
 
-def findEmotion(text): # Find emotion behind text
+def findEmotion(text, vectorizer, model): # Find emotion behind text
     emotions = ['anger','fear','joy','love','sadness','surprise']
     text = vectorizer.transform([clean_tweets_with_lem(text)])
     prediction= model.predict(text)[0]

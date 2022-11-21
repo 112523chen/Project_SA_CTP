@@ -1,13 +1,7 @@
 #import libraries and helper functions
 import streamlit as st
-import re
-import pickle
 import pandas as pd
-import numpy as np
-from nltk import word_tokenize
-from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
-from nltk.stem import WordNetLemmatizer
+import pickle
 import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -45,8 +39,7 @@ with c2:
     st.title('Emotion Analysis Model') #header tag
     text = st.text_input('Text Sample', '') # message, default
     if text is not '': #check if text var is an actually input 
-        prediction = findEmotion(text)[0] # finds the emotion behind the user input
-        prediction_df = findEmotion(text)[1]
+        prediction, prob_df  = findEmotion(text, vectorizer, model) # finds the emotion behind the user input
         if len(text) > inputTextLimit:
             st.header(f"The text has the {prediction} emotion behind it") #presents prediction
             st.write(text)
@@ -54,7 +47,7 @@ with c2:
             st.header(f"The text above has the {prediction} emotion behind it") #presents prediction
         if agree:
             st.subheader("Emotion Probabilities")
-            st.table(prediction_df)
+            st.table(prob_df)
     else:
         st.info(
                 f"""
