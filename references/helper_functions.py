@@ -38,8 +38,12 @@ def clean_tweets_without_nlp(tweet):
 def findEmotion(text, vectorizer, model): # Find emotion behind text
     emotions = ['anger','fear','joy','love','sadness','surprise']
     text = vectorizer.transform([clean_tweets_with_lem(text)])
-    prediction= model.predict(text)[0]
-    prob_df = pd.DataFrame( { "emotion": emotions, "probability": model.predict_proba(text)[0] } )
-    prob_df.set_index('emotion', inplace=True)
-    prob_df.sort_values(['probability'], inplace=True, ascending=False)
-    return prediction, prob_df 
+    prediction = model.predict(text)[0]
+
+    ##############################################################
+    # probability estimates are not available for loss='hinge'
+    # prob_df = pd.DataFrame( { "emotion": emotions, "probability": model.predict_proba(text)[0] } )
+    # prob_df.set_index('emotion', inplace=True)
+    # prob_df.sort_values(['probability'], inplace=True, ascending=False)
+
+    return prediction #,prob_df 
