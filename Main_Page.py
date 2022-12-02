@@ -7,12 +7,12 @@ nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
 nltk.download('omw-1.4')
-from references.helper_functions import clean_tweets_with_lem, findEmotion
+from references.helper_functions import clean_tweets_with_lem, findEmotion, isNeutral
 
 
 #store saved models into variables
-model = pickle.load(open('references/models/cleaned_NLP_BoW_SGDC_model_92.pkl','rb'))
-vectorizer = pickle.load(open('references/vectorizers/cleaned_NLP_BoW_SGDC_vectorizer_92.pkl','rb'))
+model = pickle.load(open('references/models/cleaned_BoW_MNB_88.pkl','rb'))
+vectorizer = pickle.load(open('references/vectorizers/BoW_vectorizer_MNB_88.pkl','rb'))
 
 
 #app variables
@@ -32,24 +32,29 @@ st.set_page_config( # head tag
                 """ 
     })
 
-##############################################################
-#! probability estimates are not available for loss='hinge'
-# agree = st.sidebar.checkbox('See Probability Estimates')
+
+agree = st.sidebar.checkbox('See Probability Estimates')
 
 c1, c2, c3 = st.columns([1, 6, 1]) # establish margin
 with c2:
     st.title('Emotion Analysis Model') #header tag
     text = st.text_input('Text Sample', '') # message, default
     if text is not '': #check if text var is an actually input 
-        prediction = findEmotion(text, vectorizer, model) # finds the emotion behind the user input
+
+        neturalFlag, prob_df = isNeutral(text, vectorizer, model)
+        prediction, prob_df = findEmotion(text, vectorizer, model) # finds the emotion behind the user input
+
+        if neturalFlag == True:
+            prediction = "neutral"
+        
         if len(text) > inputTextLimit:
             st.header(f"The text has the {prediction} emotion behind it") #presents prediction
             st.write(text)
         else:
             st.header(f"The text above has the {prediction} emotion behind it") #presents prediction
-        # if agree:
-        #     st.subheader("Emotion Probabilities")
-        #     st.table(prob_df)
+        if agree:
+            st.subheader("Emotion Probabilities")
+            st.table(prob_df)
     else:
         st.info(
                 f"""

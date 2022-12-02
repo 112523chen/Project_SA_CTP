@@ -1,6 +1,7 @@
 #import libraries
 import re
 import pandas as pd
+import numpy as np
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer
@@ -39,11 +40,33 @@ def findEmotion(text, vectorizer, model): # Find emotion behind text
     emotions = ['anger','fear','joy','love','sadness','surprise']
     text = vectorizer.transform([clean_tweets_with_lem(text)])
     prediction = model.predict(text)[0]
+    prob_df = pd.DataFrame( { "emotion": emotions, "probability": model.predict_proba(text)[0] } )
+    prob_df.set_index('emotion', inplace=True)
+    prob_df.sort_values(['probability'], inplace=True, ascending=False)
+    return prediction, prob_df
 
-    ##############################################################
-    # probability estimates are not available for loss='hinge'
-    # prob_df = pd.DataFrame( { "emotion": emotions, "probability": model.predict_proba(text)[0] } )
-    # prob_df.set_index('emotion', inplace=True)
-    # prob_df.sort_values(['probability'], inplace=True, ascending=False)
+def isNeutral(text, vectorizer, model):
+    roundLimit = 3
+    neturalLimit = 0.01
 
-    return prediction #,prob_df 
+    emotions = ['anger','fear','joy','love','sadness','surprise']
+    text = vectorizer.transform([clean_tweets_with_lem(text)])
+    prediction = model.predict(text)[0]
+    prob_df = pd.DataFrame( { "emotion": emotions, "probability": model.predict_proba(text)[0] } )
+    prob_1, prob_2, prob_3, prob_4, prob_5, prob_6 = model.predict_proba(text)[0]
+
+    prob_1 = round(prob_1, roundLimit)
+    prob_2 = round(prob_2, roundLimit)
+    prob_3 = round(prob_3, roundLimit)
+    prob_4 = round(prob_4, roundLimit)
+    prob_5 = round(prob_5, roundLimit)
+    prob_6 = round(prob_6, roundLimit)
+
+    # print(prediction == prob_df["emotion"].iloc[0])
+
+    std = np.std([prob_1, prob_2, prob_3, prob_4, prob_5, prob_6])
+    
+    if std < neturalLimit:
+        return True, prob_df
+    
+    return False, prob_df
