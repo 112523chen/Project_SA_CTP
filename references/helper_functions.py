@@ -70,3 +70,17 @@ def isNeutral(text, vectorizer, model):
         return True, prob_df
     
     return False, prob_df
+
+def getColor(index):
+    key = {
+        'anger': 'red',
+        'love': 'pink',
+        'sadness': 'blue',
+        'surprise': 'green',
+        'joy': '#e6e600',
+        'fear': 'purple',
+    }
+    stack = []
+    for i in index:
+        stack.append(key[i])
+    return stack

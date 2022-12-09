@@ -2,13 +2,15 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import seaborn as sns
 import pickle
+from matplotlib import pyplot as plt
 import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
 nltk.download('omw-1.4')
-from references.helper_functions import clean_tweets_with_lem, findEmotion, isNeutral
+from references.helper_functions import clean_tweets_with_lem, findEmotion, isNeutral, getColor
 
 
 #store saved models into variables
@@ -42,7 +44,7 @@ with c2:
     text = st.text_input('Text Sample', '') # message, default
     if text is not '': #check if text var is an actually input 
 
-        neturalFlag, prob_df = isNeutral(text, vectorizer, model)
+        neturalFlag, prob_df = isNeutral(text, vectorizer, model) # finds if emotions aren't high
         prediction, prob_df = findEmotion(text, vectorizer, model) # finds the emotion behind the user input
 
         if neturalFlag == True:
@@ -55,7 +57,11 @@ with c2:
             st.header(f"The text above has the {prediction} emotion behind it") #presents prediction
         if agree:
             st.subheader("Emotion Probabilities")
-            st.table(prob_df)
+            fig, ax = plt.subplots()
+            ax.bar(prob_df.index, prob_df.probability, color=getColor(prob_df.index))
+            ax.set_ylabel('Probabilities')
+            ax.set_xlabel('Emotions')
+            st.pyplot(fig)
     else:
         st.info(
                 f"""
