@@ -77,7 +77,7 @@ def getColor(index):
         'love': 'pink',
         'sadness': 'blue',
         'surprise': 'green',
-        'joy': '#e6e600',
+        'joy': '#87CEEB',
         'fear': 'purple',
     }
     stack = []
