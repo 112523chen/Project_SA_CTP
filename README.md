@@ -2,7 +2,7 @@
 
 ## Project Description
 
-Create a machine learning model that predicts the emotions of a section of text using data from a labeled dataset.
+Create a web application that predicts emotions within a piece of text using supervised machine learning and natural language processing
 
 ## Data Source
 
@@ -39,4 +39,4 @@ Create a machine learning model that predicts the emotions of a section of text 
 > Location of the machine learning models
 
 ### references/vectorizers
-> Location of teh vecotorizers for the machine learning model
+> Location of the vecotorizers for the machine learning model
