@@ -6,7 +6,7 @@ Create a machine learning model that predicts the emotions of a section of text 
 
 ## Data Source
 
-[Original](https://www.kaggle.com/datasets/parulpandey/emotion-dataset)
+[First](https://www.kaggle.com/datasets/parulpandey/emotion-dataset)
 
 > Dataset that contains a section of text with labels for the text that describes the emotion of the text
 
