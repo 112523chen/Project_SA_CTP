@@ -28,6 +28,10 @@ Create a web application that predicts emotions within a piece of text using sup
 `Richard Yeung`
 **[@ryrichard](https://github.com/ryrichard)**
 
+## Slide Deck
+
+[Gama Slide Deck](https://gamma.app/docs/CTP-Project-38qy7du59jo3orx?mode=doc)
+
 ## File Directory
 ### Main_Page.py
 > Location of the root of the streamlit application
