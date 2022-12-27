@@ -1,5 +1,7 @@
 # Project SA (Sentiment Analysis)
 
+![Demo Image](https://user-images.githubusercontent.com/85437095/209639828-48bb389a-7a5b-490c-99ec-17061f1818c0.png)
+
 ## Project Description
 
 Create a web application that predicts emotions within a piece of text using supervised machine learning and natural language processing
